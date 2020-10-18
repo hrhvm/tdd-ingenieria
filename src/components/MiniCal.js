@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import { add } from "../Calc";
 
 import {
   Container,
@@ -17,8 +18,17 @@ export const MiniCal = () => {
 
   const [resultado, setResultado] = useState(0);
 
+  // function sumar() {
+  //   setResultado(Number(valueA) + Number(valueB));
+  // }
+
   function sumar() {
-    setResultado(Number(valueA) + Number(valueB));
+    try {
+      const r = add(valueA, valueB);
+      setResultado(r);
+    } catch (error) {
+      console.log("Fuera del Rango");
+    }
   }
 
   return (

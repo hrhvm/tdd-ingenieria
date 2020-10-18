@@ -9,7 +9,7 @@
 // }
 
 export function add(a, b) {
-  var resultado = a + b;
+  var resultado = Number(a) + Number(b);
   if (resultado < 0) {
     throw new Error("Resultado fuera del rango permitido");
   }
