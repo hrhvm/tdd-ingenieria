@@ -11,10 +11,12 @@ import {
   Button,
   Divider,
   Form,
+  GridColumn,
 } from "semantic-ui-react";
 export const MiniCal = () => {
   const [valueA, setValueA] = useState(0);
   const [valueB, setValueB] = useState(0);
+  const [operacion, setOperacion] = useState();
 
   const [resultado, setResultado] = useState(0);
 
@@ -27,7 +29,7 @@ export const MiniCal = () => {
       const r = add(valueA, valueB);
       setResultado(r);
     } catch (error) {
-      console.log("Fuera del Rango");
+      setResultado("Fuera del Rango");
     }
   }
 
@@ -38,7 +40,7 @@ export const MiniCal = () => {
       </Header>
       <Divider />
       <Container>
-        <Segment>
+        {/* <Segment>
           <Grid columns={3}>
             <Grid.Column width="8">
               <Form>
@@ -70,9 +72,59 @@ export const MiniCal = () => {
               <br></br>
               <br></br>
               <Button primary onClick={sumar}>
-                Calcular
+                =
               </Button>
             </Grid.Column>
+            <Grid.Column width="4">
+              <Form>
+                <Form.Field>
+                  <Label pointing="below">Resultado</Label>
+                  <input type="text" readOnly value={resultado} />
+                </Form.Field>
+              </Form>
+            </Grid.Column>
+          </Grid>
+        </Segment> */}
+
+        <Segment>
+          <Grid columns={3}>
+            <Grid.Column width="8">
+              <Form>
+                <Form.Group widths="equal">
+                  <Form.Field>
+                    <Label color="green" pointing="below">
+                      Ingrese el Valor de A
+                    </Label>
+                    <input
+                      type="text"
+                      placeholder="Valor de A"
+                      onChange={(e) => {
+                        setValueA(e.target.value);
+                      }}
+                    />
+                  </Form.Field>
+                  <Form.Field>
+                    <Label color="green" pointing="below">
+                      Ingrese el Valor de A
+                    </Label>
+                    <input
+                      type="text"
+                      placeholder="Valor de B"
+                      onChange={(e) => {
+                        setValueB(e.target.value);
+                      }}
+                    />
+                  </Form.Field>
+                </Form.Group>
+              </Form>
+            </Grid.Column>
+            <Grid.Column width="4">
+              <Button.Group primary vertical>
+                <Button onClick={sumar}>+</Button>
+                <Button>-</Button>
+              </Button.Group>
+            </Grid.Column>
+
             <Grid.Column width="4">
               <Form>
                 <Form.Field>
