@@ -34,7 +34,7 @@ export const MiniCal = () => {
   return (
     <div>
       <Header as="h1" textAlign="center">
-        MiniCalc
+        Curso: Ingenieria de software Avanzado, Proyecto TDD- Mini Calculadora
       </Header>
       <Divider />
       <Container>
