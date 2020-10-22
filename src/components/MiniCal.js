@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { add } from "../Calc";
+import { add, subtract } from "../Calc";
 
 import {
   Container,
@@ -25,11 +25,22 @@ export const MiniCal = () => {
   // }
 
   function sumar() {
+    console.log("sumando");
     try {
       const r = add(valueA, valueB);
       setResultado(r);
     } catch (error) {
-      setResultado("Fuera del Rango");
+      setResultado(error);
+    }
+  }
+
+  function restart() {
+    console.log("restando");
+    try {
+      const r = subtract(valueA, valueB);
+      setResultado(r);
+    } catch (error) {
+      setResultado(error);
     }
   }
 
@@ -39,6 +50,7 @@ export const MiniCal = () => {
         Curso: Ingenieria de software Avanzado, Proyecto TDD- Mini Calculadora
       </Header>
       <Divider />
+
       <Container>
         {/* <Segment>
           <Grid columns={3}>
@@ -88,7 +100,7 @@ export const MiniCal = () => {
 
         <Segment>
           <Grid columns={3}>
-            <Grid.Column width="8">
+            <Grid.Column width="10">
               <Form>
                 <Form.Group widths="equal">
                   <Form.Field>
@@ -118,14 +130,14 @@ export const MiniCal = () => {
                 </Form.Group>
               </Form>
             </Grid.Column>
-            <Grid.Column width="4">
+            <Grid.Column width="1">
               <Button.Group primary vertical>
                 <Button onClick={sumar}>+</Button>
-                <Button>-</Button>
+                <Button onClick={restart}>-</Button>
               </Button.Group>
             </Grid.Column>
 
-            <Grid.Column width="4">
+            <Grid.Column width="5">
               <Form>
                 <Form.Field>
                   <Label pointing="below">Resultado</Label>
