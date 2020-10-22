@@ -117,7 +117,7 @@ export const MiniCal = () => {
                   </Form.Field>
                   <Form.Field>
                     <Label color="green" pointing="below">
-                      Ingrese el Valor de A
+                      Ingrese el Valor de B
                     </Label>
                     <input
                       type="text"
