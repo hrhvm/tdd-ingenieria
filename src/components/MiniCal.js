@@ -1,5 +1,6 @@
 import React, { useState } from "react";
-import { add, subtract } from "../Calc";
+import { calculate } from "../Calc";
+import { OperationType } from "../Types";
 
 import {
   Container,
@@ -20,29 +21,14 @@ export const MiniCal = () => {
 
   const [resultado, setResultado] = useState(0);
 
-  // function sumar() {
-  //   setResultado(Number(valueA) + Number(valueB));
-  // }
-
-  function sumar() {
-    console.log("sumando");
+  const handleOperation = (e) => {
     try {
-      const r = add(valueA, valueB);
+      const r = calculate(valueA, e.target.name, valueB);
       setResultado(r);
     } catch (error) {
       setResultado(error);
     }
-  }
-
-  function restart() {
-    console.log("restando");
-    try {
-      const r = subtract(valueA, valueB);
-      setResultado(r);
-    } catch (error) {
-      setResultado(error);
-    }
-  }
+  };
 
   return (
     <div>
@@ -52,52 +38,6 @@ export const MiniCal = () => {
       <Divider />
 
       <Container>
-        {/* <Segment>
-          <Grid columns={3}>
-            <Grid.Column width="8">
-              <Form>
-                <Form.Group widths="equal">
-                  <Form.Field>
-                    <Label pointing="below">Ingrese el Valor de A</Label>
-                    <input
-                      type="text"
-                      placeholder="Valor de A"
-                      onChange={(e) => {
-                        setValueA(e.target.value);
-                      }}
-                    />
-                  </Form.Field>
-                  <Form.Field>
-                    <Label pointing="below">Ingrese el Valor de A</Label>
-                    <input
-                      type="text"
-                      placeholder="Valor de B"
-                      onChange={(e) => {
-                        setValueB(e.target.value);
-                      }}
-                    />
-                  </Form.Field>
-                </Form.Group>
-              </Form>
-            </Grid.Column>
-            <Grid.Column width="4">
-              <br></br>
-              <br></br>
-              <Button primary onClick={sumar}>
-                =
-              </Button>
-            </Grid.Column>
-            <Grid.Column width="4">
-              <Form>
-                <Form.Field>
-                  <Label pointing="below">Resultado</Label>
-                  <input type="text" readOnly value={resultado} />
-                </Form.Field>
-              </Form>
-            </Grid.Column>
-          </Grid>
-        </Segment> */}
-
         <Segment>
           <Grid columns={3}>
             <Grid.Column width="10">
@@ -132,8 +72,12 @@ export const MiniCal = () => {
             </Grid.Column>
             <Grid.Column width="1">
               <Button.Group primary vertical>
-                <Button onClick={sumar}>+</Button>
-                <Button onClick={restart}>-</Button>
+                <Button name={OperationType.Add} onClick={handleOperation}>
+                  +
+                </Button>
+                <Button name={OperationType.Subtract} onClick={handleOperation}>
+                  -
+                </Button>
               </Button.Group>
             </Grid.Column>
 
